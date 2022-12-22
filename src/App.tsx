@@ -1,10 +1,16 @@
-import React from 'react';
+import React from "react";
+import { Routes, Route } from "react-router-dom";
+import Home from "./pages/Home";
+import Header from "./components/header/Header";
 
 function App() {
   return (
-    <div className="App">
-      Frontend setup
-    </div>
+    <>
+    <Header />
+      <Routes>
+        <Route path="/" element={<Home />} />
+      </Routes>
+    </>
   );
 }
 
