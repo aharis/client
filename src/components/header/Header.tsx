@@ -3,16 +3,20 @@ import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import Box from "@mui/system/Box";
 import Menu from "@mui/material/Menu";
+import Link from "@mui/material/Link"
 import IconButton from "@mui/material/IconButton";
 import PersonIcon from '@mui/icons-material/Person';
-import { Typography } from "@mui/material";
+import Typography from "@mui/material/Typography";
+import { useStyles } from './styles.js'
+import { useNavigate } from "react-router";
 
-    const Header = () => {
+const Header = () => {
+  const navigate = useNavigate()
+  const classes = useStyles();
   const [anchor, setAnchor] = useState(null);
 
-
-  const handleOpenMenu = (event:any) => {
-    setAnchor(event.currentTarget);	
+  const handleOpenMenu = (event: any) => {
+    setAnchor(event.currentTarget);
   };
 
   const handleCloseMenu = () => {
@@ -23,27 +27,21 @@ import { Typography } from "@mui/material";
     <AppBar color="inherit" elevation={2}
     >
       <Toolbar>
-        <Box ml="auto" mr={3}>
-            <Typography color="#00e5ff">Login</Typography> {/*after login shoul be swiched by PersonIcon */}
+        <Box className={classes.root}>
+          <Link onClick={() => navigate('/register')} mr={3} className={classes.links}>Register</Link>{/*after login shoul be swiched by PersonIcon */}
+          <Link onClick={() => navigate('/')} className={classes.links}>Login</Link>{/*after login shoul be swiched by PersonIcon */}
+          {/*after login shoul be swiched by PersonIcon */}
           {/* <IconButton onClick={handleOpenMenu}>
             <PersonIcon fontSize="large" color="primary" />
           </IconButton> */}
           <Menu
-            sx={{ "& .MuiPaper-root": { minWidth: 250 } }}
+           className={classes.modal}
             anchorEl={anchor}
-			keepMounted
+            keepMounted
             open={!!anchor}
-            onClose={handleCloseMenu}
-            anchorOrigin={{
-              horizontal: "right",
-              vertical: "bottom",
-            }}
-            transformOrigin={{
-                horizontal: 'right',
-                vertical: 'top',
-            }}
+            onClose={handleCloseMenu}            
           >
-            <h1>ide user</h1>
+            <Typography>ide user</Typography>
           </Menu>
         </Box>
       </Toolbar>
