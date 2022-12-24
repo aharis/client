@@ -1,12 +1,14 @@
 import React from "react";
 import { Box, Grid } from "@mui/material";
-import HomeImage from "../assets/world-book-day-scaled.jpg";
+import HomeImage from "../../assets/world-book-day-scaled.jpg";
+import { useStyles } from "./styles";
 
 const Home = () => {
+  const classes = useStyles();
   return (
     <Box>
-      <Grid container xs={12} md={8} sx={{ mt: "4rem" }} m={"auto"}>
-        <img src={HomeImage} alt='HomeImage' style={{ width: "100vw", height: "90vh" }} />
+      <Grid container xs={12} md={8} className={classes.root}>
+        <img src={HomeImage} alt='HomeImage' className={classes.image}/>
       </Grid>
     </Box>
   ); // should be book image and some other ddetails.

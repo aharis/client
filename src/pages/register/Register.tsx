@@ -8,20 +8,14 @@ import {
   Grid,
   TextField,
   Typography,
-} from '@mui/material'
+} from '@mui/material';
+import { useStyles } from './styles'
 
 const Register = () => {
+  const classes = useStyles();
   return (
-    <Card
-      style={{
-        margin: '100px auto',
-        maxWidth: '500px',
-        display: `flex`,
-        flexDirection: `row`,
-        justifyContent: `center`,
-        alignItems: 'center',
-      }}>
-      <CardContent>
+    <Card className={classes.root}>
+          <CardContent>
         <Typography gutterBottom variant='h4' align='center'>
           Register
         </Typography>
