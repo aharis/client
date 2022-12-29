@@ -9,14 +9,16 @@ import {
   TextField,
   Typography,
 } from '@mui/material';
-<<<<<<< HEAD:src/pages/Register.tsx
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { useAppSelector, useAppDispatch } from '../app/hooks';
-import { register, reset } from '../featured/auth/authSlice';
+import { useAppSelector, useAppDispatch } from '../../app/hooks';
+import { register, reset } from '../../featured/auth/authSlice';
+import { useStyles } from './styles';
+
 
 const Register = () => {
+  const classes = useStyles();
   const [formData, setFormData] = useState({
     username: '',
     email: '',
@@ -32,7 +34,7 @@ const Register = () => {
    const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
-   const { user, isLoading, isError, isSuccess, message } = useAppSelector((state) => state.auth);
+   const { user, isLoading, isError, isSuccess, message } = useAppSelector((state:any) => state.auth);
 
   useEffect(() => {
     if (isError) {
@@ -74,12 +76,6 @@ const Register = () => {
     }
   };
 
-=======
-import { useStyles } from './styles'
-
-const Register = () => {
-  const classes = useStyles();
->>>>>>> develop:src/pages/register/Register.tsx
   return (
     <Card className={classes.root}>
           <CardContent>

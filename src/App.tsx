@@ -1,21 +1,12 @@
-<<<<<<< HEAD
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
-import Home from './pages/Home';
+import Home from './pages/home/Home';
 import Header from './components/header/Header';
-import Register from './pages/Register';
-import Login from './pages/Login';
+import Register from './pages/register/Register';
+import Login from './pages/login/Login';
 import { Provider } from 'react-redux';
 import { store } from './app/store';
-=======
-import React from "react";
-import { Routes, Route } from "react-router-dom";
-import Home from "./pages/home/Home";
-import Header from "./components/header/Header";
-import Register from "./pages/Register";
-import Login from "./pages/Login";
->>>>>>> develop
 
 
 function App() {
