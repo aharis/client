@@ -9,6 +9,7 @@ import {
   TextField,
   Typography,
 } from '@mui/material';
+<<<<<<< HEAD:src/pages/Register.tsx
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
@@ -73,17 +74,15 @@ const Register = () => {
     }
   };
 
+=======
+import { useStyles } from './styles'
+
+const Register = () => {
+  const classes = useStyles();
+>>>>>>> develop:src/pages/register/Register.tsx
   return (
-    <Card
-      style={{
-        margin: '100px auto',
-        maxWidth: '500px',
-        display: `flex`,
-        flexDirection: `row`,
-        justifyContent: `center`,
-        alignItems: 'center',
-      }}>
-      <CardContent>
+    <Card className={classes.root}>
+          <CardContent>
         <Typography gutterBottom variant='h4' align='center'>
           Register
         </Typography>
