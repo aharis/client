@@ -1,3 +1,5 @@
+import { useEffect, useState } from "react";
+
 import {
   Box,
   Button,
@@ -9,9 +11,56 @@ import {
   Typography,
 } from "@mui/material";
 import { useStyles } from "./styles";
+import { login, reset } from '../../featured/auth/authSlice';
+import { useAppDispatch, useAppSelector } from "../../app/hooks";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const classes = useStyles();
+  const navigate = useNavigate()
+  const dispatch = useAppDispatch();
+
+  const [formData, setFormData] = useState({
+    username: '',
+    password: ''
+  })
+
+  const { username, password } = formData;
+  const { user, isError, isLoading, isSuccess, message } = useAppSelector((state) => state.auth)
+
+  useEffect(() => {
+    if (isError) {
+      toast.error(message)
+    }  
+    if(user?.result.token) {
+      navigate('/home')
+    } 
+    if(!user?.result.token) {
+      navigate('/')
+    } 
+    
+    dispatch(reset())
+  }, [user, isError, isSuccess, message, dispatch, navigate])
+
+  const handleChange = (e: any) => {
+    setFormData((prevState) => ({
+      ...prevState, [e.target.name]: e.target.value
+    })
+    )
+  }
+
+  const onSubmit = async (e: any) => {
+
+    const userData = {
+      username,
+      password
+    }
+
+    await dispatch(login(userData))
+
+  }
+
   return (
     <Card className={classes.root}>
       <CardContent>
@@ -24,6 +73,9 @@ const Login = () => {
               label="Username"
               className={classes.textField}
               fullWidth
+              name="username"
+              value={username}
+              onChange={handleChange}
             />
           </Grid>
           <Grid xs={12} item>
@@ -31,6 +83,9 @@ const Login = () => {
               label="Password"
               className={classes.textField}
               fullWidth
+              name="password"
+              value={password}
+              onChange={handleChange}
             />
           </Grid>
         </Grid>
@@ -39,7 +94,7 @@ const Login = () => {
           Don't have an account? Register by clicking here!
         </Link>
         <Box textAlign="center">
-          <Button variant="outlined" className={classes.button}>Log In</Button>
+          <Button variant="outlined" className={classes.button} onClick={onSubmit}>Log In</Button>
         </Box>
       </CardContent>
     </Card>
