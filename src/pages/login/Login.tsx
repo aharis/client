@@ -13,7 +13,8 @@ import {
 import { useStyles } from "./styles";
 import { login, reset } from '../../featured/auth/authSlice';
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
-import { toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
+
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
@@ -97,6 +98,8 @@ const Login = () => {
           <Button variant="outlined" className={classes.button} onClick={onSubmit}>Log In</Button>
         </Box>
       </CardContent>
+      <ToastContainer />
+
     </Card>
   );
 };

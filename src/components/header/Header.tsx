@@ -9,9 +9,12 @@ import PersonIcon from '@mui/icons-material/Person';
 import Typography from "@mui/material/Typography";
 import { useStyles } from './styles.js'
 import { useNavigate } from "react-router";
+import { logout } from "../../featured/auth/authSlice.js";
+import { useAppDispatch } from "../../app/hooks";
 
 const Header = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
   const classes = useStyles();
   const [anchor, setAnchor] = useState(null);
 
@@ -20,6 +23,8 @@ const Header = () => {
   };
 
   const handleCloseMenu = () => {
+    dispatch(logout())
+    navigate('/')
     setAnchor(null)
   };
 
@@ -31,9 +36,9 @@ const Header = () => {
           <Link onClick={() => navigate('/register')} mr={3} className={classes.links}>Register</Link>{/*after login shoul be swiched by PersonIcon */}
           <Link onClick={() => navigate('/')} className={classes.links}>Login</Link>{/*after login shoul be swiched by PersonIcon */}
           {/*after login shoul be swiched by PersonIcon */}
-          {/* <IconButton onClick={handleOpenMenu}>
+          <IconButton onClick={handleOpenMenu}>
             <PersonIcon fontSize="large" color="primary" />
-          </IconButton> */}
+          </IconButton>
           <Menu
            className={classes.modal}
             anchorEl={anchor}

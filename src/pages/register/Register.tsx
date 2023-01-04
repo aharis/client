@@ -11,7 +11,8 @@ import {
 } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { useAppSelector, useAppDispatch } from '../../app/hooks';
 import { register, reset } from '../../featured/auth/authSlice';
 import { useStyles } from './styles';
@@ -62,7 +63,9 @@ const Register = () => {
 
   const onSubmit = (e: any) => {
     if (password !== password2) {
-       toast.error('Passwords do not match');
+       toast.error('Passwords do not match' , {
+        position: toast.POSITION.TOP_RIGHT
+    });
     } else {
       const userData = {
         username,
@@ -158,6 +161,7 @@ const Register = () => {
           </Button>
         </Box>
       </CardContent>
+      <ToastContainer />
     </Card>
   );
 };
