@@ -34,10 +34,10 @@ const Login = () => {
     if (isError) {
       toast.error(message)
     }  
-    if(user?.result.token) {
+    if(user?.token) {
       navigate('/home')
     } 
-    if(!user?.result.token) {
+    if(!user?.token) {
       navigate('/')
     } 
     

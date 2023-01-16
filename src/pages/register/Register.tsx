@@ -27,10 +27,11 @@ const Register = () => {
     password2: '',
     address: '',
     zipcode: '',
+    role: 'customer',
     discount: false,
   });
 
-  const { username, email, password, password2, address, zipcode, discount } = formData;
+  const { username, email, password, password2, address, zipcode, role, discount } = formData;
 
    const navigate = useNavigate();
   const dispatch = useAppDispatch();
@@ -73,6 +74,7 @@ const Register = () => {
         password,
         address,
         zipcode,
+        role,
         discount
       };
        dispatch(register(userData));

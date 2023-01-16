@@ -1,4 +1,3 @@
-import React from "react";
 import { Box, Grid } from "@mui/material";
 import HomeImage from "../../assets/world-book-day-scaled.jpg";
 import { useStyles } from "./styles";
