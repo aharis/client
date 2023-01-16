@@ -52,8 +52,10 @@ const Login = () => {
   }
 
   const onSubmit = async (e: any) => {
-
-    const userData = {
+    if(username === '' || password === '' ) {
+      toast.error('Please, enter valid data')
+    }
+    const userData: any = {
       username,
       password
     }
@@ -75,6 +77,7 @@ const Login = () => {
               className={classes.textField}
               fullWidth
               name="username"
+              required
               value={username}
               onChange={handleChange}
             />
@@ -85,6 +88,7 @@ const Login = () => {
               className={classes.textField}
               fullWidth
               name="password"
+              required
               value={password}
               onChange={handleChange}
             />

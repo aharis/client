@@ -68,7 +68,7 @@ const Register = () => {
         position: toast.POSITION.TOP_RIGHT
     });
     } else {
-      const userData = {
+      const userData: any = {
         username,
         email,
         password,
@@ -94,6 +94,7 @@ const Register = () => {
               variant='outlined'
               fullWidth
               name='username'
+              required
               value={username}
               onChange={onChange}
             />
@@ -104,6 +105,7 @@ const Register = () => {
               variant='outlined'
               fullWidth
               name='email'
+              required
               value={email}
               onChange={onChange}
             />
@@ -114,6 +116,7 @@ const Register = () => {
               variant='outlined'
               fullWidth
               name='password'
+              required
               value={password}
               onChange={onChange}
             />
@@ -124,6 +127,7 @@ const Register = () => {
               variant='outlined'
               fullWidth
               name='password2'
+              required
               value={password2}
               onChange={onChange}
             />
