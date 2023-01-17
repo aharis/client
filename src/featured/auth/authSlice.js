@@ -11,7 +11,6 @@ interface UserState {
   message: string,
 }
 
-
 //Get user from localstorage
 const user = JSON.parse(localStorage.getItem('user'));
 
@@ -54,21 +53,6 @@ export const logout = createAsyncThunk('auth/logout',
     await authService.logout  
 })
 
-//Login user
-export const login = createAsyncThunk('auth/login', async (user: any, thunkAPI) => {
-  try {
-    return await authService.login(user)
-  } catch (error) {
-    const message = (error.response && error.result.loginMessage && error.response.data.message) || error.message || error.toString()
-    return thunkAPI.rejectWithValue(message)
-  }
-})
-
-export const logout = createAsyncThunk('auth/logout', 
-  async () => {
-    await authService.logout  
-})
-
 export const authSlice = createSlice({
   name: 'auth',
   initialState,
@@ -104,7 +88,7 @@ export const authSlice = createSlice({
       .addCase(login.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccess = true;
-        state.user = action.payload;
+        state.user = action.payload.result;
       })
       .addCase(login.rejected, (state, action) => {
         state.isLoading = false;

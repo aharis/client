@@ -1,10 +1,10 @@
-import React, { useState } from "react";
-import AppBar from "@mui/material/AppBar";
-import Toolbar from "@mui/material/Toolbar";
-import Box from "@mui/system/Box";
-import Menu from "@mui/material/Menu";
-import Link from "@mui/material/Link"
-import IconButton from "@mui/material/IconButton";
+import React, { useState } from 'react';
+import AppBar from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar';
+import Box from '@mui/system/Box';
+import Menu from '@mui/material/Menu';
+import Link from '@mui/material/Link';
+import IconButton from '@mui/material/IconButton';
 import PersonIcon from '@mui/icons-material/Person';
 import Typography from "@mui/material/Typography";
 
@@ -26,8 +26,15 @@ const Header = () => {
     setAnchor(event.currentTarget);
   };
 
-  const handleCloseMenu = () => {   
-    setAnchor(null)
+  const handleCloseMenu = () => {
+    dispatch(logout());
+    navigate('/');
+    setAnchor(null);
+  };
+
+  const logoutUser = async () => {
+    await dispatch(logout());
+    navigate('/');
   };
 
   const handleClickLogout = () => {
@@ -36,22 +43,35 @@ const Header = () => {
     navigate('/')
   }
   return (
-    <AppBar color="inherit" elevation={2}
-    >
+    <AppBar color='inherit' elevation={2}>
       <Toolbar>
       <Typography>Our books</Typography>
         <Box className={classes.root}>
-         {user ?       
+          {user?.token ? (
+            <>
+              <Typography mr={3} className={classes.links}>
+                Welcome {user.user.role === 'customer' ? user.user.username : 'Manager'}
+              </Typography>
+              <Link onClick={() => logoutUser()} className={classes.links}>
+                Logout
+              </Link>
+            </>
+          ) : (
+            <>
+              <Link onClick={() => navigate('/register')} mr={3} className={classes.links}>
+                Register
+              </Link>
+              <Link onClick={() => navigate('/')} className={classes.links}>
+                Login
+              </Link>
+            </>
+          )}
+
           <IconButton onClick={handleOpenMenu}>
-            <PersonIcon fontSize="large" className={classes.links}/>
-          </IconButton> :
-             <Box>
-             <Link onClick={() => navigate('/register')} mr={3} className={classes.links}>Register</Link>
-             <Link onClick={() => navigate('/')} className={classes.links}>Login</Link>
-             </Box> 
-          }
+            <PersonIcon fontSize='large' color='primary' />
+          </IconButton>
           <Menu
-           className={classes.modal}
+            className={classes.modal}
             anchorEl={anchor}
             keepMounted
             open={!!anchor}
