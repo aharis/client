@@ -1,6 +1,5 @@
 import {
   Box,
-  Button,
   Card,
   CardContent,
   Checkbox,
@@ -14,9 +13,9 @@ import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useAppSelector, useAppDispatch } from '../../app/hooks';
+import SubmitButton from '../../components/submitButton/SubmitButton';
 import { register, reset } from '../../featured/auth/authSlice';
 import { useStyles } from './styles';
-
 
 const Register = () => {
   const classes = useStyles();
@@ -33,10 +32,12 @@ const Register = () => {
 
   const { username, email, password, password2, address, zipcode, role, discount } = formData;
 
-   const navigate = useNavigate();
+  const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
-   const { user, isLoading, isError, isSuccess, message } = useAppSelector((state:any) => state.auth);
+  const { user, isLoading, isError, isSuccess, message } = useAppSelector(
+    (state: any) => state.auth
+  );
 
   useEffect(() => {
     if (isError) {
@@ -64,9 +65,9 @@ const Register = () => {
 
   const onSubmit = (e: any) => {
     if (password !== password2) {
-       toast.error('Passwords do not match' , {
-        position: toast.POSITION.TOP_RIGHT
-    });
+      toast.error('Passwords do not match', {
+        position: toast.POSITION.TOP_RIGHT,
+      });
     } else {
       const userData: any = {
         username,
@@ -75,15 +76,15 @@ const Register = () => {
         address,
         zipcode,
         role,
-        discount
+        discount,
       };
-       dispatch(register(userData));
+      dispatch(register(userData));
     }
   };
 
   return (
     <Card className={classes.root}>
-          <CardContent>
+      <CardContent>
         <Typography gutterBottom variant='h4' align='center'>
           Register
         </Typography>
@@ -162,9 +163,7 @@ const Register = () => {
         />
 
         <Box textAlign='center'>
-          <Button variant='outlined' onClick={onSubmit}>
-            Sign In
-          </Button>
+          <SubmitButton onClick={onSubmit}>Sign In</SubmitButton>
         </Box>
       </CardContent>
       <ToastContainer />
