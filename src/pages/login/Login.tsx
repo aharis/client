@@ -1,82 +1,73 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 
-import {
-  Box,
-  Button,
-  Card,
-  CardContent,
-  Grid,
-  Link,
-  TextField,
-  Typography,
-} from "@mui/material";
-import { useStyles } from "./styles";
+import { Box, Card, CardContent, Grid, Link, TextField, Typography } from '@mui/material';
+import { useStyles } from './styles';
 import { login, reset } from '../../featured/auth/authSlice';
-import { useAppDispatch, useAppSelector } from "../../app/hooks";
-import { toast, ToastContainer } from "react-toastify";
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
+import { toast, ToastContainer } from 'react-toastify';
 
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
+import SubmitButton from '../../components/submitButton/SubmitButton';
 
 const Login = () => {
   const classes = useStyles();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
   const [formData, setFormData] = useState({
     username: '',
-    password: ''
-  })
+    password: '',
+  });
 
   const { username, password } = formData;
-  const { user, isError, isLoading, isSuccess, message } = useAppSelector((state) => state.auth)
+  const { user, isError, isLoading, isSuccess, message } = useAppSelector((state) => state.auth);
 
   useEffect(() => {
     if (isError) {
-      toast.error(message)
-    }  
-    if(user?.token) {
-      navigate('/home')
-    } 
-    if(!user?.token) {
-      navigate('/')
-    } 
-    
-    dispatch(reset())
-  }, [user, isError, isSuccess, message, dispatch, navigate])
+      toast.error(message);
+    }
+    if (user?.token) {
+      navigate('/home');
+    }
+    if (!user?.token) {
+      navigate('/');
+    }
+
+    dispatch(reset());
+  }, [user, isError, isSuccess, message, dispatch, navigate]);
 
   const handleChange = (e: any) => {
     setFormData((prevState) => ({
-      ...prevState, [e.target.name]: e.target.value
-    })
-    )
-  }
+      ...prevState,
+      [e.target.name]: e.target.value,
+    }));
+  };
 
   const onSubmit = async (e: any) => {
-    if(username === '' || password === '' ) {
-      toast.error('Please, enter valid data')
+    if (username === '' || password === '') {
+      toast.error('Please, enter valid data');
     }
     const userData: any = {
       username,
-      password
-    }
+      password,
+    };
 
-    await dispatch(login(userData))
-
-  }
+    await dispatch(login(userData));
+  };
 
   return (
     <Card className={classes.root}>
       <CardContent>
-        <Typography className={classes.typography} variant="h4" gutterBottom >
+        <Typography className={classes.typography} variant='h4' gutterBottom>
           Login
         </Typography>
         <Grid container spacing={3}>
           <Grid item xs={12}>
             <TextField
-              label="Username"
+              label='Username'
               className={classes.textField}
               fullWidth
-              name="username"
+              name='username'
               required
               value={username}
               onChange={handleChange}
@@ -84,10 +75,10 @@ const Login = () => {
           </Grid>
           <Grid xs={12} item>
             <TextField
-              label="Password"
+              label='Password'
               className={classes.textField}
               fullWidth
-              name="password"
+              name='password'
               required
               value={password}
               onChange={handleChange}
@@ -95,15 +86,14 @@ const Login = () => {
           </Grid>
         </Grid>
 
-        <Link href="/register" className={classes.link}>
+        <Link href='/register' className={classes.link}>
           Don't have an account? Register by clicking here!
         </Link>
-        <Box textAlign="center">
-          <Button variant="outlined" className={classes.button} onClick={onSubmit}>Log In</Button>
+        <Box textAlign='center'>
+          <SubmitButton onClick={onSubmit}>Log In</SubmitButton>
         </Box>
       </CardContent>
       <ToastContainer />
-
     </Card>
   );
 };
