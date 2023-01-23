@@ -6,6 +6,7 @@ import { styled } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
 import { useAppDispatch } from '../../app/hooks';
 import SubmitButton from '../../components/submitButton/SubmitButton';
+import { addBook } from '../../featured/book/bookSlice';
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -44,14 +45,14 @@ const AddBook = () => {
   };
 
   const onSubmit = (e: any) => {
-    const userData: any = {
+    const bookData: any = {
       title,
       author,
       price,
       stock,
       reorder_notification,
     };
-    //  dispatch(register(userData));
+    dispatch(addBook(bookData));
   };
 
   return (
@@ -136,7 +137,7 @@ const AddBook = () => {
         </Grid>
 
         <Box textAlign='end'>
-          <SubmitButton>Add</SubmitButton>
+          <SubmitButton onClick={onSubmit}>Add</SubmitButton>
         </Box>
       </CardContent>
       <ToastContainer />
