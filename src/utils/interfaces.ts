@@ -5,3 +5,9 @@ export interface IBook {
   stock: number;
   reorder_notification: number;
 }
+
+export interface IUser {
+  username: string;
+  role: string;
+  result: any;
+}
