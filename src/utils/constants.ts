@@ -1,1 +1,1 @@
-export const API_URL = 'https://api-service-iwzu.onrender.com/api/r1';
+export const API_URL = 'https://client-4cw7.onrender.com/api/r1';
