@@ -1,1 +1,1 @@
-export const API_URL = 'http://localhost:3001/api/r1';
+export const API_URL = 'https://api-service-iwzu.onrender.com/api/r1';

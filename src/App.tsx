@@ -6,11 +6,12 @@ import Login from './pages/login/Login';
 import { Provider } from 'react-redux';
 import { store } from './app/store';
 import AddBook from './pages/books/AddBook';
+import AddPromotion from './pages/promotions/AddPromotion';
 
 
 function App() {
   return (
-    <>
+    <div>
     <Provider store={store}>
       <Header />
       <Routes>
@@ -18,10 +19,12 @@ function App() {
         <Route path='/register' element={<Register />} />
         <Route path='/home' element={<Home />} />
         <Route path='/add-book' element={<AddBook />} />
+        <Route path='/add-promotion' element={<AddPromotion />} />
+
 
       </Routes>
       </Provider>
-    </>
+    </div>
   );
 }
 
