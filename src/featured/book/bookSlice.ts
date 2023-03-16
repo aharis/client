@@ -1,15 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { IBook } from '../../utils/interfaces';
+import { BookState, IBook } from '../../utils/interfaces';
 import bookService from './bookService';
-
-// Define a type for the slice state
-interface BookState {
-  book: IBook;
-  isError: boolean;
-  isSuccess: boolean;
-  isLoading: boolean;
-  message: string | any;
-}
 
 const initialState: BookState = {
   book: {

@@ -1,25 +1,12 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import authService from './authService';
-import type { RootState } from '../../app/store';
-import { IUser } from '../../utils/interfaces';
-
-// Define a type for the slice state
-interface UserState {
-  user: IUser;
-  isError: boolean;
-  isSuccess: boolean;
-  isLoading: boolean;
-  message: string | any;
-}
-
-//Get user from localstorage
-// const user= JSON.parse(localStorage.getItem('user') || '');
+import { UserState } from '../../utils/interfaces';
 
 const initialState: UserState = {
   user: {
     username: '',
     role: '',
-    result: ''
+    result: '',
   },
   isError: false,
   isSuccess: false,

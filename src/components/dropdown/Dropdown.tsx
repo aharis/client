@@ -4,6 +4,7 @@ import Button from '@mui/material/Button';
 import Menu, { MenuProps } from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import { useNavigate } from 'react-router-dom';
 
 const StyledMenu = styled((props: MenuProps) => (
   <Menu
@@ -43,6 +44,7 @@ const StyledMenu = styled((props: MenuProps) => (
 }));
 
 const Dropdown = () => {
+  const navigate = useNavigate();
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
   const open = Boolean(anchorEl);
@@ -76,10 +78,20 @@ const Dropdown = () => {
         anchorEl={anchorEl}
         open={open}
         onClose={handleClose}>
-        <MenuItem onClick={handleClose} disableRipple>
+        <MenuItem
+          onClick={() => {
+            handleClose();
+            navigate('/add-book');
+          }}
+          disableRipple>
           Add Item
         </MenuItem>
-        <MenuItem onClick={handleClose} disableRipple>
+        <MenuItem
+          onClick={() => {
+            handleClose();
+            navigate('/add-promotion');
+          }}
+          disableRipple>
           Add Promotion
         </MenuItem>
       </StyledMenu>
